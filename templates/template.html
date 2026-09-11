@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>title</title>
+    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+    <header class="header">
+        <div class="container header__container">
+            <a class="header__logo">Сладкий сундук</a>
+            <div class="header__info">
+                <address class="address__text">г. Санкт Петербург, ул. Куйбышева 31</address>
+                <div class="header__phone">
+                    <a class="phone__number">8 (812) 844-95-49</a>
+                    <div class="phone__timetable">Ежедневно с 9:00 до 20:00</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="content">
+        <section class="hero">
+            <div class="container hero__container">
+                <div class="hero__upper">ВКУСНЕЙШИЕ</div>
+                <div class="hero__header">Пирожные и капкейки<br>от 150 ₽/шт. с доставкой<br>по Санкт Петербургу</div>
+                <div class="hero__text">Приготовим за 3 часа в день заказа.<br>Доставка на авто в холодильнике.</div>
+                <div class="hero__bottom">
+                    <button class="hero__button">Перейти в каталог</button>
+                    <div class="hero__side_text">9 различных видов на выбор</div>
+                </div>
+            </div>
+        </section>
+        <section class="products">
+            <div class="container products__container">
+                <div class="section_header">Для любых событий и дорогих вам людей</div>
+                <div class="products__cards">
+                    {% for product_info in products_info %}
+                    <div class="product__card">
+                        <img class="card__img" src="{{ product_info.img }}">
+                        <div class="card__container">
+                            <div class="card__info">
+                                <div class="card__header">{{ product_info.title }}</div>
+                                <div class="card__text">{{ product_info.description }}</div>
+                            </div>
+                            <div class="card__bottom">
+                                <div class="card__price">{{ product_info.price }}</div>
+                                <button class="card__button">Заказать</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="reviews">
+            <img class="background" src="{{ url_for('static', filename='Images/Reviews/03 1.png') }}">
+            <div class="reviews__container">
+                <div class="section_header">Почитайте отзывы довольных клиентов</div>
+                <div class="reviews__slider swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="review">
+                                <div class="review__main">
+                                    <img class="quotes" src="{{ url_for('static', filename='Images/Reviews/quotes.png') }}" alt="">
+                                    <div class="review__header">«Лучшую фразу из отзыва напишите в заголовке»</div>
+                                    <div class="review__text">«Вставьте отзыв целиком или часть отзыва клиента. Никогда не выдумывайте отзывы самостоятельно. Фальшивые отзывы всегда видно. Будьте честны. Опишите конечный результат, который получил человек после работы с вами. Что конкретно ему это дало. Можно описывать результат в цифрах, чтобы была конкретика»</div>
+                                    <a class="review__more">Читать отзыв полностью</a>
+                                </div>
+                                <div class="review__side">
+                                    <img class="review__image" src="{{ url_for('static', filename='Images/Reviews/img1.png') }}" alt="">
+                                    <div class="review__side_text">
+                                        <div class="review__author">Елена Демидова</div>
+                                        <div class="review__place">Санкт-Петербург</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review">
+                                <div class="review__main">
+                                    <img class="quotes" src="{{ url_for('static', filename='Images/Reviews/quotes.png') }}" alt="">
+                                    <div class="review__header">«Результат дико порадовал, друзья были в восторге»</div>
+                                    <div class="review__text">«Заказала капкейки, как подарок на новый год. Делать заказ было легко и приятно, ну а результат дико порадовал, друзья были в восторге. И оформление, и на вкус капкейки были просто замечательные. Обязательно буду заказывать еще)) Уже строю планы, чтобы попробовать все начинки. Они восхитительны!) Даже кушать было жалко, такая красота!)</div>
+                                    <a class="review__more">Читать отзыв полностью</a>
+                                </div>
+                                <div class="review__side">
+                                    <img class="review__image" src="{{ url_for('static', filename='Images/Reviews/img2.png') }}" alt="">
+                                    <div class="review__side_text">
+                                        <div class="review__author">Ирина Ларионова</div>
+                                        <div class="review__place">Санкт-Петербург</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review">
+                                <div class="review__main">
+                                    <img class="quotes" src="{{ url_for('static', filename='Images/Reviews/quotes.png') }}" alt="">
+                                    <div class="review__header">«Спасибо за прекрасные капкейки, все на высоте»</div>
+                                    <div class="review__text">«Вставьте отзыв целиком или часть отзыва клиента. Никогда не выдумывайте отзывы самостоятельно. Фальшивые отзывы всегда видно. Будьте честны. Опишите конечный результат, который получил человек после работы с вами. Что конкретно ему это дало. Можно описывать результат в цифрах, чтобы была конкретика»</div>
+                                    <a class="review__more">Читать отзыв полностью</a>
+                                </div>
+                                <div class="review__side">
+                                    <img class="review__image" src="{{ url_for('static', filename='Images/Reviews/img3.jpg') }}" alt="">
+                                    <div class="review__side_text">
+                                        <div class="review__author">Дуэйн Джонсон</div>
+                                        <div class="review__place">Лос-Анжелес</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review">
+                                <div class="review__main">
+                                    <img class="quotes" src="{{ url_for('static', filename='Images/Reviews/quotes.png') }}" alt="">
+                                    <div class="review__header">«Лучшую фразу из отзыва напишите в заголовке»</div>
+                                    <div class="review__text">«Вставьте отзыв целиком или часть отзыва клиента. Никогда не выдумывайте отзывы самостоятельно. Фальшивые отзывы всегда видно. Будьте честны. Опишите конечный результат, который получил человек после работы с вами. Что конкретно ему это дало. Можно описывать результат в цифрах, чтобы была конкретика»</div>
+                                    <a class="review__more">Читать отзыв полностью</a>
+                                </div>
+                                <div class="review__side">
+                                    <img class="review__image" src="{{ url_for('static', filename='Images/Reviews/img1.png') }}" alt="">
+                                    <div class="review__side_text">
+                                        <div class="review__author">Елена Демидова</div>
+                                        <div class="review__place">Санкт-Петербург</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review">
+                                <div class="review__main">
+                                    <img class="quotes" src="{{ url_for('static', filename='Images/Reviews/quotes.png') }}" alt="">
+                                    <div class="review__header">«Результат дико порадовал, друзья были в восторге»</div>
+                                    <div class="review__text">«Заказала капкейки, как подарок на новый год. Делать заказ было легко и приятно, ну а результат дико порадовал, друзья были в восторге. И оформление, и на вкус капкейки были просто замечательные. Обязательно буду заказывать еще)) Уже строю планы, чтобы попробовать все начинки. Они восхитительны!) Даже кушать было жалко, такая красота!)</div>
+                                    <a class="review__more">Читать отзыв полностью</a>
+                                </div>
+                                <div class="review__side">
+                                    <img class="review__image" src="{{ url_for('static', filename='Images/Reviews/img2.png') }}" alt="">
+                                    <div class="review__side_text">
+                                        <div class="review__author">Ирина Ларионова</div>
+                                        <div class="review__place">Санкт-Петербург</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reviews__arrows">
+                    <button class="reviews__arrow left">
+                        <img class="arrow" src="{{ url_for('static', filename='Images/Reviews/arrow1.png') }}">
+                    </button>
+                    <button class="reviews__arrow right">
+                        <img class="arrow" src="{{ url_for('static', filename='Images/Reviews/arrow2.png') }}">
+                    </button>
+                </div>
+            </div>
+            <img class="background" src="{{ url_for('static', filename='Images/Reviews/04 1.png') }}">
+        </section>
+        <section class="gallery">
+            <div class="gallery__container">
+                <div class="section_head">
+                    <div class="section_header">Сделали более 3.000 заказов за 2 года</div>
+                    <div class="section_subheader">Посмотрите фото реальных заказов из нашего instagram</div>
+                </div>
+                <div class="gallery__images">
+                    {% for photo_info in gallery_info %}
+                    <img class="gallery__image" src="{{ photo_info.img }}">
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="form">
+            <img class="background" src="{{ url_for('static', filename='Images/Form/05 1.png') }}">
+            <div class="container form__container">
+                <div class="form__head">
+                    <div class="form__header">Чтобы сделать заказ, укажите ваш телефон</div>
+                    <div class="form__subheader">Мы перезвоним в течении 15 минут, чтобы уточнить ваши пожелания</div>
+                </div>
+                <form class="form__main" method="POST">
+                    <div class="form__fields">
+                        <div class="form__field">
+                            <img class="phone_icon" src="{{ url_for('static', filename='Images/Form/User.png') }}">
+                            <input type="text" class="field__input" placeholder="Имя" name="username" required>
+                        </div>
+                        <div class="form__field">
+                            <img class="phone_icon" src="{{ url_for('static', filename='Images/Form/Mail.png') }}">
+                            <input type="email" class="field__input" placeholder="Электронная почта" name="email" required>
+                        </div>
+                        <div class="form__field">
+                            <img class="phone_icon" src="{{ url_for('static', filename='Images/Form/Phone.png') }}">
+                            <input type="tel" class="field__input" placeholder="Номер телефона" name="phone" required>
+                        </div>
+                        <button class="form__button">Сделать заказ</button>
+                    </div>
+                    <label class="form__bottom">
+                        <input class="form__checkbox" type="checkbox">Нажимая на кнопку, вы соглашаетесь с условиями обработки персональных данных</input>
+                    </label>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__text">Согласие на обработку данных</div>
+            <div class="footer__text">Служба поддержки</div>
+            <div class="footer__text">Политика конфиденциальности</div>
+            <div class="footer__text">© nazvaniesaita.ru, 2054 | Название компании или ИП ОГРН 0000000000000</div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry1.png') }}" id="berry1">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry2.png') }}" id="berry2">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry3.png') }}" id="berry3">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry4.png') }}" id="berry4">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry5.png') }}" id="berry5">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry6.png') }}" id="berry6">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/berry7.png') }}" id="berry7">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf1.png') }}" id="leaf1">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf2.png') }}" id="leaf2">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf3.png') }}" id="leaf3">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf4.png') }}" id="leaf4">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf5.png') }}" id="leaf5">
+<img class="overlay" src="{{ url_for('static', filename='Images/Overlay/leaf6.png') }}" id="leaf6">
+</html>

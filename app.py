@@ -1,22 +1,14 @@
 import pandas
 from flask import Flask, render_template, request
-from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
 import resend
+from resend.exceptions import ResendError
 
 
 load_dotenv()
 app = Flask(__name__)
-email = os.environ["EMAIL"]
 resend.api_key = os.environ["RESEND_API_KEY"]
-app.config["MAIL_SERVER"]="smtp.gmail.com"
-app.config["MAIL_PORT"] = 465
-app.config["MAIL_USERNAME"] = email
-app.config["MAIL_PASSWORD"] = os.environ["EMAIL_PASSWORD"]
-app.config["MAIL_USE_TLS"] = False
-app.config["MAIL_USE_SSL"] = True
-mail = Mail(app)
 products_info = pandas.read_excel("products.xlsx").to_dict(orient="records")
 gallery_info = pandas.read_excel("gallery.xlsx").to_dict(orient="records")
 
@@ -27,10 +19,16 @@ def main_page():
         username = request.form.get("username")
         phone = request.form.get("phone")
         user_email = request.form.get("email")
-        msg = Message("Thanks", sender = email, recipients = [user_email])
-        msg.body = f"Hello {username}. Thanks for your order!"
-        mail.send(msg)
-        print("Sended")
+        params: resend.Emails.SendParams = {
+            "from": "Sweetchest <onboarding@resend.dev>",
+            "to": [user_email],
+            "subject": "Thanks",
+            "html": f"Hello {username}. Thanks for your order!",
+        }
+        try:
+            email = resend.Emails.send(params)
+        except ResendError as error:
+            print(error)
     return render_template(
         "template.html", 
         products_info=products_info,

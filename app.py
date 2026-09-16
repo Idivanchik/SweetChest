@@ -6,13 +6,7 @@ import resend
 from resend.exceptions import ResendError
 
 
-load_dotenv()
 app = Flask(__name__)
-resend.api_key = os.environ["RESEND_API_KEY"]
-products_info = pandas.read_excel("products.xlsx").to_dict(orient="records")
-gallery_info = pandas.read_excel("gallery.xlsx").to_dict(orient="records")
-
-
 @app.route("/", methods = ["GET", "POST"])
 def main_page():
     if request.method == "POST" and request.form.get('username'):
@@ -37,4 +31,8 @@ def main_page():
 
 
 if __name__ == "__main__":
+    load_dotenv()
+    resend.api_key = os.environ["RESEND_API_KEY"]
+    products_info = pandas.read_excel("products.xlsx").to_dict(orient="records")
+    gallery_info = pandas.read_excel("gallery.xlsx").to_dict(orient="records")
     app.run(debug=True)

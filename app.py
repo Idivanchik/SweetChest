@@ -4,6 +4,11 @@ from dotenv import load_dotenv
 import os
 import resend
 from resend.exceptions import ResendError
+from typing import Final
+
+
+PRODUCTS_INFO: Final = pandas.read_excel("products.xlsx").to_dict(orient="records")
+GALLERY_INFO: Final = pandas.read_excel("gallery.xlsx").to_dict(orient="records")
 
 
 app = Flask(__name__)
@@ -25,14 +30,12 @@ def main_page():
             print(error)
     return render_template(
         "template.html", 
-        products_info=products_info,
-        gallery_info=gallery_info
+        products_info=PRODUCTS_INFO,
+        gallery_info=GALLERY_INFO
     )
 
 
 if __name__ == "__main__":
     load_dotenv()
     resend.api_key = os.environ["RESEND_API_KEY"]
-    products_info = pandas.read_excel("products.xlsx").to_dict(orient="records")
-    gallery_info = pandas.read_excel("gallery.xlsx").to_dict(orient="records")
     app.run(debug=True)

@@ -168,6 +168,7 @@ a {
     background-color: rgb(250, 216, 62);
     color: rgb(26, 26, 26);
     padding: 1.875rem 3.125rem;
+    border: 0;
     border-radius: 0.5rem;
     font-size: 1.125rem;
     font-weight: 500;
